@@ -10,16 +10,17 @@ import os
 import cv2
 from moviepy.editor import VideoFileClip
 
-# URL's de las paginas web de servicios de streaming
 urlN  = 'https://www.netflix.com/mx/'
 urlA  = 'https://www.primevideo.com/'
 urlD  = 'https://www.disneyplus.com/es-mx'
-urlS  = 'https://open.spotify.com/'
 urlH  = 'https://www.hbomax.com/mx/es'
+urlC  = 'https://www.crunchyroll.com/es/'
+urlAm = 'https://music.amazon.com.mx/'
+urlS  = 'https://open.spotify.com/'
+urlT  = 'https://tidal.com/'
 urlDy = 'https://www.youtube.com/'
 
 #Definicion del color de fondo
-#colorFondo="#061848"
 
 # Creación de ventana principal
 window = tk.Tk()
@@ -31,33 +32,47 @@ pygame.mixer.init()
 width  = window.winfo_screenwidth()
 height = window.winfo_screenheight()
 
+espera = 200 #ms de espera
+
 # Creación de funciones para cada servicio de streaming
 def Netflix():
     wb.open_new(urlN) #Abre la url que se le manda como parámetro
-    window.after(500,pantallaCompleta) #la abre en pantalla completa
+    window.after(espera,pantallaCompleta) 
 
 def Prime():
     wb.open_new(urlA)
-    window.after(500,pantallaCompleta)
+    window.after(espera,pantallaCompleta)
 
 def Disney():
     wb.open_new(urlD)
-    window.after(500,pantallaCompleta)
-
-def Spotify():
-    wb.open_new(urlS)
-    window.after(500,pantallaCompleta)
+    window.after(espera,pantallaCompleta)
 
 def HBO_MAX():
     wb.open_new(urlH)
-    window.after(500,pantallaCompleta)
+    window.after(espera,pantallaCompleta)
+
+def Crunchy():
+    wb.open_new(urlC)
+    window.after(espera,pantallaCompleta)
+
+def PrimeMusic():
+    wb.open_new(urlAm)
+    window.after(espera,pantallaCompleta)
+
+def Spotify():
+    wb.open_new(urlS)
+    window.after(espera,pantallaCompleta)
+
+def Tidal():
+    wb.open_new(urlT)
+    window.after(espera,pantallaCompleta)
 
 def Youtube():
     wb.open_new(urlDy)
-    window.after(500,pantallaCompleta)    
+    window.after(espera,pantallaCompleta)    
     
 def pantallaCompleta():
-    pyautogui.press("F11") #se da clic en la tecla F11 del teclado 
+    pyautogui.press("F11") 
 
 def apagar():
     subprocess.call(['shutdown', "-h", "now"])
@@ -69,7 +84,7 @@ def cerrar():
     pyautogui.keyUp("alt")
 
 def Salir():
-    labelSalir = Label(window, text="Hasta Luego.",
+    labelSalir = Label(window, text="ADIOS <3",
              fg="#fff",    # Foreground
              #bg=colorFondo,   # Background
              bg="slate blue",   # Background
@@ -101,16 +116,14 @@ def Conexion_Red(ssid, key):
         fp.write('\tkey_mgmt=WPA-PSK')
     with open(arch, 'a') as fp:
         fp.write('\n}')
-    labelConfig = Label(window, text="Empleando Configuración\nNecesita Reiniciar",
-                    #fg="#fff", bg=colorFondo,font=("Verdana Bold",60))
+    labelConfig = Label(window, text="Empleando Configuración\nNecesita Reiniciar",                    
                     fg="#fff", bg="slate blue",font=("Georgia",60))
     labelConfig.place(relx=0, rely=0, relwidth=1, relheight=1)
     window.after(4000, reinicio)
 
 def Configuracion_Red():
     labelTitulo = Label(window, text="Configuracion de Red",
-             fg="#fff",    # Foreground
-             #bg=colorFondo,   # Background
+             fg="#fff",    # Foreground            
              bg="slate blue",   # Background
              font=("Georgia",60))
     labelTitulo.place(relx=0.3, rely=0.05)
@@ -120,26 +133,27 @@ def Configuracion_Red():
     botonNetflix.place_forget()
     botonPrime.place_forget()
     botonDisney.place_forget()
-    botonSpotify.place_forget()
     botonHBO_MAX.place_forget()
+    botonCrunchy.place_forget()
+    botonPrimeMusic.place_forget()
+    botonSpotify.place_forget()
+    botonTidal.place_forget()    
     botonYoutube.place_forget()
     botonConfiguracion.place_forget()
     botonSalir.place_forget()
     botonUsb.place_forget()
 
-    labelSSID = Label(window, text="SSID", 
+    labelSSID = Label(window, text="Red", 
                         fg="#fff",    # Foreground
                         #bg=colorFondo,   # Background
                         bg="slate blue",   # Background
                         font=("Georgia",40))
     labelSSID.place(relx=0.25, rely=0.35) 
-
     
     entrySSID.place(relx=0.45, rely=0.35, relheight=0.05, relwidth=0.25)
 
-    labelPWD = Label(window, text="PASSWORD", 
-                        fg="#fff",    # Foreground
-                        #bg=colorFondo,   # Background
+    labelPWD = Label(window, text="Contraseña", 
+                        fg="#fff",    # Foreground                        
                         bg="slate blue",   # Background
                         font=("Georgia",40))
     labelPWD.place(relx=0.25, rely=0.55) 
@@ -154,38 +168,37 @@ def USB():
     botonNetflix.place_forget()
     botonPrime.place_forget()
     botonDisney.place_forget()
-    botonSpotify.place_forget()
     botonHBO_MAX.place_forget()
+    botonCrunchy.place_forget()
+    botonPrimeMusic.place_forget()
+    botonSpotify.place_forget()
+    botonTidal.place_forget()    
     botonYoutube.place_forget()
     botonConfiguracion.place_forget()
     botonSalir.place_forget()
     botonUsb.place_forget()
+
     labelBienvenida.place_forget()
     botonConnect.place_forget()
     
     
     botonClose.place(relx=0.9, rely=0.9) # Posición del botón de cerrar
-    botonMusica.pack   ()
-    botonImagenes.pack     ()
-    botonVideo.pack       ()
-    """
-    botonMusica.place      (relx=0.2,  rely=0.4)
-    botonImagenes.place  (relx=0.45, rely=0.4)
-    botonVideo.place  (relx=0.7,  rely=0.4)
-    """
-    botonMusica.place      (relx=0.2,  rely=0.4)
-    botonImagenes.place  (relx=0.7,  rely=0.4)
-    botonVideo.place  (relx=0.45, rely=0.4)
+
+    botonMusica.pack()
+    botonImagenes.pack()
+    botonVideo.pack()
+
+    botonMusica.place(relx=0.2,  rely=0.4)
+    botonImagenes.place(relx=0.7,  rely=0.4)
+    botonVideo.place(relx=0.45, rely=0.4)
 
 def Musica():
-    musicPlayer = tk.Toplevel()
-    #musicPlayer.config(bg=colorFondo, cursor="circle") #Se define el color de la mini interfaz
+    musicPlayer = tk.Toplevel()    
     musicPlayer.config(bg="slate blue", cursor="spider") #Se define el color de la mini interfaz
     musicPlayer.geometry("%dx%d" % (width, height))
 
-    labelMusica = Label(window, text="DinamitaTV", #Se define el nombre de la ventana
-                        fg="#fff",    # Foreground
-                        #bg=colorFondo,   # Background
+    labelMusica = Label(window, text="DinamitaMusic", #Se define el nombre de la ventana
+                        fg="#fff",    # Foreground                        
                         bg="slate blue",   # Background
                         font=("Georgia",60))
     labelMusica.place(relx=0.3, rely=0.05) #Posición de la ventana
@@ -195,8 +208,7 @@ def Musica():
                             command = musicPlayer.destroy,
                             bg="#000",  
                             borderwidth= 0.1,
-                            fg="#fff",
-                            #cursor="X_cursor",
+                            fg="#fff",                            
                             cursor="heart",
                             font=("Georgia", 18))
     botonClose.place(relx=0.9, rely=0.9) # Posición del botón de cerrar
@@ -205,10 +217,8 @@ def Musica():
 
     # Función para agregar canciones de la memoria USB
     def Añadir_Cancion():
-        canciones = filedialog.askopenfilenames(initialdir="D:/Música",title="Escoge una canción",filetypes=(("mp3","*.mp3"),("allfiles","*.*")))
-        #camiar la extension del nombre de la cancion for cancion in canciones:
+        canciones = filedialog.askopenfilenames(initialdir="D:/Música",title="Escoge una canción",filetypes=(("mp3","*.mp3"),("allfiles","*.*")))       
         for cancion in canciones:
-
             cancion=cancion.replace("C:/Users/User/Downloads/","")
             cancion=cancion.replace(".mp3","")
 
@@ -262,9 +272,6 @@ def Musica():
     #Pantalla
     pantalla= Listbox(musicPlayer, bg="lightblue", fg ="blue", width= 100, selectbackground= "white", selectforeground="black") 
     pantalla.pack(pady=150)
-    #pantalla.place(xrel=0.3, rely=0.1)
-
-
     #Botones
     Siguiente_Cancion= tk.Button(musicPlayer, text="Siguiente", command= Siguiente_Cancion, #ventana, texto del boton, accion 
                          bg="#000", borderwidth= 0.1, #color de fondo, grosor del boton
@@ -304,7 +311,7 @@ def Imagenes():
         image = cv2.imread(image_path)
         if image is None:
             continue
-        image = cv2.resize(image, (500, 350), interpolation=cv2.INTER_CUBIC)
+        image = cv2.resize(image, (1280, 720), interpolation=cv2.INTER_CUBIC)
         
         cv2.imshow("Image", image)
         cv2.waitKey(1000)
@@ -330,9 +337,9 @@ def Video():
             if ret:
                 cv2.imshow("Videos", frame)
                 if cv2.waitKey(1) != -1:  # Presionar cualquier tecla para salir
-                    break
+                    break                    
             else:
-                break
+                break                
 
         video.release()
         cv2.destroyAllWindows()   # Cerrar manualmente la ventana del video
@@ -342,59 +349,65 @@ def main():
     try:
         request = requests.get("http://www.google.com", timeout=5)
     except (requests.ConnectionError, requests.Timeout):
-        labelWifi = Label(window, image=img_nowifi,
-                       #bg=colorFondo)
+        labelWifi = Label(window, image=img_nowifi,                       
                        bg="slate blue")
     else:
-        labelWifi = Label(window, image=img_wifi,
-                       #bg=colorFondo)
+        labelWifi = Label(window, image=img_wifi,                       
                        bg="slate blue")
     labelWifi.place(relx=0.95, rely=0.05)
 
     labelTitulo.place(relx=0.3, rely=0.05)
     # Llamado de cada botón
-    botonNetflix.pack   ()
-    botonPrime.pack    ()
-    botonDisney.pack    ()
-    botonSpotify.pack   ()
-    botonHBO_MAX.pack       ()
-    botonYoutube.pack   ()
-    botonSalir.pack     ()
-    botonUsb.pack     ()
-
-    """botonNetflix.place  (relx=0.2,  rely=0.15)
-    botonPrime.place   (relx=0.45, rely=0.15)
-    botonDisney.place   (relx=0.7,  rely=0.15)
-    botonHBO_MAX.place      (relx=0.2,  rely=0.4)
-    botonSpotify.place  (relx=0.45, rely=0.4)
-    botonYoutube.place  (relx=0.7,  rely=0.4)
-    botonUsb.place   (relx=0.2, rely=0.7)
-    botonConfiguracion.place   (relx=0.45, rely=0.7)
-    botonSalir.place    (relx=0.7, rely=0.7) """
-
-    botonNetflix.place  (relx=0.7,  rely=0.4)
-    botonYoutube.place  (relx=0.2,  rely=0.15)
-    botonSpotify.place  (relx=0.45, rely=0.15)
-    botonPrime.place   (relx=0.45, rely=0.4)
-    botonHBO_MAX.place      (relx=0.7,  rely=0.15)
-    botonDisney.place   (relx=0.2,  rely=0.4)
-    botonUsb.place   (relx=0.45, rely=0.7)
-    botonConfiguracion.place   (relx=0.2, rely=0.7)
-    botonSalir.place    (relx=0.7, rely=0.7)
+    botonNetflix.pack()
+    botonPrime.pack()
+    botonDisney.pack()
+    botonHBO_MAX.pack()
+    botonCrunchy.pack()
+    botonPrimeMusic.pack()
+    botonSpotify.pack()
+    botonTidal.pack()    
+    botonYoutube.pack()
+    botonConfiguracion.pack()
+    botonUsb.pack()
+    botonSalir.pack()
     
-   
+    botonNetflix.place(relx=0.2,  rely=0.2)
+    botonPrime.place(relx=0.36,  rely=0.2)
+    botonDisney.place(relx=0.52,  rely=0.2)
+    botonHBO_MAX.place(relx=0.68,  rely=0.2)
+
+    botonCrunchy.place(relx=0.2, rely=0.45)
+    botonSpotify.place(relx=0.36, rely=0.45)
+    botonPrimeMusic.place(relx=0.52, rely=0.45)
+    botonTidal.place(relx=0.68, rely=0.45)
+
+    botonYoutube.place(relx=0.2, rely=0.7)
+    botonUsb.place(relx=0.36, rely=0.7)
+    botonConfiguracion.place(relx=0.52, rely=0.7)
+    botonSalir.place(relx=0.68, rely=0.7)   
 
     #Se oculta la pagina de bienvenida
     labelBienvenida.place_forget()
     botonConnect.place_forget()
     botonClose.place_forget()
-    
+    botonMusica.place_forget()
+    botonVideo.place_forget()
+    botonImagenes.place_forget()
+    entrySSID.place_forget()
+    entryPWD.place_forget()    
+    labelSSID.place_forget()
+    labelPWD.place_forget()
 
-
+img_netflix = tk.PhotoImage(file="./iconos/netflix.png")
 img_prime   = tk.PhotoImage(file="./iconos/prime.png")
 img_disney  = tk.PhotoImage(file="./iconos/disney.png")
-img_spotify = tk.PhotoImage(file="./iconos/spotify.png")
 img_hbo     = tk.PhotoImage(file="./iconos/hbo.png")
+
+img_crunchy = tk.PhotoImage(file="./iconos/crunchy.png")
+img_spotify = tk.PhotoImage(file="./iconos/spotify.png")
+img_primemusic=tk.PhotoImage(file="./iconos/primemusic.png")
+img_tidal   = tk.PhotoImage(file="./iconos/tidal.png")
+
 img_youtube = tk.PhotoImage(file="./iconos/youtube.png")
 img_config  = tk.PhotoImage(file="./iconos/config.png")
 img_salir   = tk.PhotoImage(file="./iconos/salir.png")
@@ -404,7 +417,7 @@ img_usb  = tk.PhotoImage(file="./iconos/usb.png")
 img_musica  = tk.PhotoImage(file="./iconos/musica.png")
 img_fotos  = tk.PhotoImage(file="./iconos/fotos.png")
 img_video  = tk.PhotoImage(file="./iconos/video.png")
-img_netflix = tk.PhotoImage(file="./iconos/netflix.png") #se guarda la imagen del boton
+#se guarda la imagen del boton
 # Creación de los botones
 botonNetflix = tk.Button(window, image=img_netflix, #ventana, imagen que tendrá el botón 
                          borderwidth=0, bg="slate blue", #grosor del botón, color de fondo
@@ -421,15 +434,31 @@ botonDisney = tk.Button(window, image=img_disney,
                          cursor="heart",
                         command = Disney)
 
+botonHBO_MAX = tk.Button(window, image=img_hbo,
+                         borderwidth=0, bg="slate blue",
+                         cursor="heart",
+                         command = HBO_MAX)    
+
+botonCrunchy = tk.Button(window, image=img_crunchy,
+                         borderwidth=0, bg="slate blue",
+                         cursor="heart",
+                         command = Crunchy)
+
+
 botonSpotify = tk.Button(window, image=img_spotify,
                          borderwidth=0, bg="slate blue",
                          cursor="heart",
                          command = Spotify)
 
-botonHBO_MAX = tk.Button(window, image=img_hbo,
+botonPrimeMusic=tk.Button(window, image=img_primemusic,
                          borderwidth=0, bg="slate blue",
                          cursor="heart",
-                         command = HBO_MAX)    
+                         command = PrimeMusic)
+
+botonTidal=tk.Button(window, image=img_tidal,
+                         borderwidth=0, bg="slate blue",
+                         cursor="heart",
+                         command = Tidal)
 
 botonYoutube = tk.Button(window, image=img_youtube,
                          borderwidth=0, bg="slate blue",
@@ -484,25 +513,26 @@ botonConnect = tk.Button(window, text="Conectar",
                          font=("Georgia", 40))                   
 
 #Creacion de los label
-labelBienvenida = Label(window, text="Bienvenidos DinamitaTV",
+labelBienvenida = Label(window, text="   Bienvenidos DinamitaTV",
                         fg="#fff",    # Foreground
                         bg="slate blue",   # Background
                         font=("Georgia",60))
 
-labelTitulo = Label(window, text="DinamitaTV",
+labelTitulo = Label(window, text="         DinamitaTV",
                     fg="#fff",    # Foreground
                     bg="slate blue",   # Background
                     font=("Georgia",60))
 
 entrySSID = Entry(window, font=("Georgia",34))
 entryPWD = Entry(window, font=("Georgia",34), show="*")
+labelSSID = Label(window, font=("Georgia",34))
+labelPWD = Label(window, font=("Georgia",34))
 # Geometria de la ventana
 window.geometry("%dx%d" % (width, height))
 # Atributos de la ventana, en este caso tiene que ser en pantalla completa
 window.attributes('-fullscreen', True)
 # Nombre de la ventana
 window.title("Multimedia Center")
-
 
 labelBienvenida.place(relx=0, rely=0, relheight=1, relwidth=1)
 window.after(1000, main)
