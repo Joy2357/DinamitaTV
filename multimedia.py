@@ -532,7 +532,7 @@ window.geometry("%dx%d" % (width, height))
 # Atributos de la ventana, en este caso tiene que ser en pantalla completa
 window.attributes('-fullscreen', True)
 # Nombre de la ventana
-window.title("Multimedia Center")
+window.title("DinamitaTV")
 
 labelBienvenida.place(relx=0, rely=0, relheight=1, relwidth=1)
 window.after(1000, main)
