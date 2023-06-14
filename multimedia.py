@@ -216,51 +216,52 @@ def Musica():
     musicPlayer.grab_set() # Función para que el usuario no pueda utilizar la ventana principal
 
     # Función para agregar canciones de la memoria USB
-    def Añadir_Cancion():
-        canciones = filedialog.askopenfilenames(initialdir="D:/Música",title="Escoge una canción",filetypes=(("mp3","*.mp3"),("allfiles","*.*")))       
+    def añadir():
+        canciones = filedialog.askopenfilenames(initialdir="/media/pepito/Roja/Music",title="Elige una canción",filetypes=(("mp3","*.mp3"),("allfiles","*.*")))
+        #camiar la extension del nombre de la cancion for cancion in canciones:
         for cancion in canciones:
+    
             cancion=cancion.replace("C:/Users/User/Downloads/","")
             cancion=cancion.replace(".mp3","")
-
+    
         #añadir cancion a la pantalla
             pantalla.insert (END, cancion)
             
         cancion= pantalla.get(ACTIVE)
         cancion=f'{cancion}.mp3'
-
+    
         pygame.mixer.music.load(cancion)
         pygame.mixer.music.play(loops=0)
-
-    def Siguiente_Cancion():
+    
+    def siguiente():
         #obtener el numero de tuple de la cancion que esta sonando
-        proxima_cancion = pantalla.curselection()
+        proxima = pantalla.curselection()
         #añadir uno al numero de cancion
-        proxima_cancion = proxima_cancion[0]+1
-
-        if proxima_cancion >= pantalla.size():
-            proxima_cancion = 0 
+        proxima = proxima[0]+1
+    
+        if proxima >= pantalla.size():
+            proxima = 0 
         #obtener titulo de cancion 
-        cancion= pantalla.get(proxima_cancion)  
-
+        cancion= pantalla.get(proxima)	
+    
         cancion= f'{cancion}.mp3'
-
+    
         pygame.mixer.music.load(cancion)
         pygame.mixer.music.play(loops=0)
-
+    
         pantalla.selection_clear(0,END)
         #activar nueva barra a la siguiente cancion
-        pantalla.activate(proxima_cancion)
+        pantalla.activate(proxima)
         #mostrar la barra
         last = None
-        pantalla.selection_set(proxima_cancion, last)
-          
+        pantalla.selection_set(proxima, last)
+    
     global paused
     paused=False
-
+    
     def pause(is_paused):
         global paused
         paused = is_paused
-
         if paused:
             pygame.mixer.music.unpause()
             paused=False 
@@ -268,12 +269,11 @@ def Musica():
             pygame.mixer.music.pause()
             paused=True
 
-
     #Pantalla
     pantalla= Listbox(musicPlayer, bg="lightblue", fg ="blue", width= 100, selectbackground= "white", selectforeground="black") 
     pantalla.pack(pady=150)
     #Botones
-    Siguiente_Cancion= tk.Button(musicPlayer, text="Siguiente", command= Siguiente_Cancion, #ventana, texto del boton, accion 
+    Siguiente_Cancion= tk.Button(musicPlayer, text="Siguiente", command= siguiente, #ventana, texto del boton, accion 
                          bg="#000", borderwidth= 0.1, #color de fondo, grosor del boton
                          fg="#fff",
                          cursor="heart",
@@ -290,7 +290,7 @@ def Musica():
     pausa.pack()
     pausa.place(relx=0.65, rely=0.35)
 
-    buscar = tk.Button(musicPlayer, text = "Buscar Canciones", command=Añadir_Cancion, #boton buscar cancion
+    buscar = tk.Button(musicPlayer, text = "Buscar Canciones", command=añadir, #boton buscar cancion
                        bg="#000", borderwidth= 0.1,
                        fg="#fff",
                        cursor="heart",
@@ -302,7 +302,7 @@ def Musica():
     musicPlayer.attributes('-fullscreen', True)
     
 def Imagenes():
-    input_images_path = "E:\WP"
+    input_images_path = "/media/pepito/Roja/Images"
     files_names = os.listdir(input_images_path)
 
     for file_name in files_names:
@@ -319,7 +319,7 @@ def Imagenes():
     cv2.destroyAllWindows()
 
 def Video():
-    input_videos_path = "E:/WP/Desktop/New"
+    input_videos_path = "/media/pepito/Roja/Video"
     files_names = os.listdir(input_videos_path) 
 
     for file_name in files_names:
@@ -397,26 +397,26 @@ def main():
     entryPWD.place_forget()    
     labelSSID.place_forget()
     labelPWD.place_forget()
+    
+img_netflix = tk.PhotoImage(file="/home/pepito/Desktop/iconos/netflix.png")
+img_prime   = tk.PhotoImage(file="/home/pepito/Desktop/iconos/prime.png")
+img_disney  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/disney.png")
+img_hbo     = tk.PhotoImage(file="/home/pepito/Desktop/iconos/hbo.png")
 
-img_netflix = tk.PhotoImage(file="./iconos/netflix.png")
-img_prime   = tk.PhotoImage(file="./iconos/prime.png")
-img_disney  = tk.PhotoImage(file="./iconos/disney.png")
-img_hbo     = tk.PhotoImage(file="./iconos/hbo.png")
+img_crunchy = tk.PhotoImage(file="/home/pepito/Desktop/iconos/crunchy.png")
+img_spotify = tk.PhotoImage(file="/home/pepito/Desktop/iconos/spotify.png")
+img_primemusic=tk.PhotoImage(file="/home/pepito/Desktop/iconos/primemusic.png")
+img_tidal   = tk.PhotoImage(file="/home/pepito/Desktop/iconos/tidal.png")
 
-img_crunchy = tk.PhotoImage(file="./iconos/crunchy.png")
-img_spotify = tk.PhotoImage(file="./iconos/spotify.png")
-img_primemusic=tk.PhotoImage(file="./iconos/primemusic.png")
-img_tidal   = tk.PhotoImage(file="./iconos/tidal.png")
-
-img_youtube = tk.PhotoImage(file="./iconos/youtube.png")
-img_config  = tk.PhotoImage(file="./iconos/config.png")
-img_salir   = tk.PhotoImage(file="./iconos/salir.png")
-img_wifi    = tk.PhotoImage(file="./iconos/wifi.png")
-img_nowifi  = tk.PhotoImage(file="./iconos/nowifi.png")
-img_usb  = tk.PhotoImage(file="./iconos/usb.png")
-img_musica  = tk.PhotoImage(file="./iconos/musica.png")
-img_fotos  = tk.PhotoImage(file="./iconos/fotos.png")
-img_video  = tk.PhotoImage(file="./iconos/video.png")
+img_youtube = tk.PhotoImage(file="/home/pepito/Desktop/iconos/youtube.png")
+img_config  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/config.png")
+img_salir   = tk.PhotoImage(file="/home/pepito/Desktop/iconos/salir.png")
+img_wifi    = tk.PhotoImage(file="/home/pepito/Desktop/iconos/wifi.png")
+img_nowifi  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/nowifi.png")
+img_usb  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/usb.png")
+img_musica  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/musica.png")
+img_fotos  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/fotos.png")
+img_video  = tk.PhotoImage(file="/home/pepito/Desktop/iconos/video.png")
 #se guarda la imagen del boton
 # Creación de los botones
 botonNetflix = tk.Button(window, image=img_netflix, #ventana, imagen que tendrá el botón 
