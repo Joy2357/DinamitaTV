@@ -10,15 +10,15 @@ import os
 import cv2
 from moviepy.editor import VideoFileClip
 
-urlN  = 'https://www.netflix.com/mx/'
-urlA  = 'https://www.primevideo.com/'
-urlD  = 'https://www.disneyplus.com/es-mx'
-urlH  = 'https://www.hbomax.com/mx/es'
-urlC  = 'https://www.crunchyroll.com/es/'
-urlAm = 'https://music.amazon.com.mx/'
-urlS  = 'https://open.spotify.com/'
-urlT  = 'https://tidal.com/'
-urlDy = 'https://www.youtube.com/'
+urlNetflix  = 'https://www.netflix.com/mx/'
+urlAmazon  = 'https://www.primevideo.com/'
+urlDisney  = 'https://www.disneyplus.com/es-mx'
+urlHbo  = 'https://www.hbomax.com/mx/es'
+urlCrunchy  = 'https://www.crunchyroll.com/es/'
+urlAMusic = 'https://music.amazon.com.mx/'
+urlSpotify  = 'https://open.spotify.com/'
+urlTidal  = 'https://tidal.com/'
+urlYoutube = 'https://www.youtube.com/'
 
 #Definicion del color de fondo
 
@@ -36,39 +36,39 @@ espera = 200 #ms de espera
 
 # Creación de funciones para cada servicio de streaming
 def Netflix():
-    wb.open_new(urlN) #Abre la url que se le manda como parámetro
+    wb.open_new(urlNetflix) #Abre la url que se le manda como parámetro
     window.after(espera,pantallaCompleta) 
 
 def Prime():
-    wb.open_new(urlA)
+    wb.open_new(urlAmazon)
     window.after(espera,pantallaCompleta)
 
 def Disney():
-    wb.open_new(urlD)
+    wb.open_new(urlDisney)
     window.after(espera,pantallaCompleta)
 
 def HBO_MAX():
-    wb.open_new(urlH)
+    wb.open_new(urlHbo)
     window.after(espera,pantallaCompleta)
 
 def Crunchy():
-    wb.open_new(urlC)
+    wb.open_new(urlCrunchy)
     window.after(espera,pantallaCompleta)
 
 def PrimeMusic():
-    wb.open_new(urlAm)
+    wb.open_new(urlAMusic)
     window.after(espera,pantallaCompleta)
 
 def Spotify():
-    wb.open_new(urlS)
+    wb.open_new(urlSpotify)
     window.after(espera,pantallaCompleta)
 
 def Tidal():
-    wb.open_new(urlT)
+    wb.open_new(urlTidal)
     window.after(espera,pantallaCompleta)
 
 def Youtube():
-    wb.open_new(urlDy)
+    wb.open_new(urlYoutube)
     window.after(espera,pantallaCompleta)    
     
 def pantallaCompleta():
