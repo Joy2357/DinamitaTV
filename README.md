@@ -1,5 +1,7 @@
-# Proyecto-Centro-Multimedia
+DinamitaTV
+Se elaboró un centro multimedia que tenga principalmente aplicaciones tales como (Amazon Prime Video, Netflix, HBO Max, Spotify etc). También que sea posible la reproducción de archivos multimedia tomando como fuente una memoria USB al igual que navegar en internet dentro de una interfaz de usuario.
 
-El objetivo de este proyecto es rear un centro de entretenimiento donde se puedan abrir aplicaciones (Netflix, Youtube, Disney+, etc.), reproducir archivos multimedia a partir de una memoria USB (Música, Vídeos, Imágenes) o navegar en internet a través de una interfaz de usuario.
-
-Los integrantes de la elaboración del mismo fueron: BaezBáez Cadena Diestefano Michel, Rodríguez López Michael, Ortiz Rojas Geovanny  y un servidor Salazar Zavala Alejandro
+Los integrantes del equipo Dinamita: 
+Olguin Castillo Luis Angel
+Tellez Torres Lorena Alejandra
+Calderon Gonzalez Jose Gabriel
